@@ -10,7 +10,7 @@ use crate::{
     api::keys::instance::*,
     api::translation::Translation,
     domain::vtask::VisualTaskId,
-    managers::{AppInner, ManagerRef},
+    managers::{modplatforms::curseforge::CurseForge, AppInner, ManagerRef},
 };
 
 use self::{
@@ -220,6 +220,7 @@ impl Entity {
             Self::LegacyGDLauncher => {
                 Some(LegacyGDLauncherImporter::get_default_scan_path().await?)
             }
+            Self::CurseForge => Some(CurseforgeImporter::get_default_scan_path().await?),
             _ => None,
         })
     }
